@@ -72,7 +72,7 @@ Sem rótulos em caixa alta acima dos títulos. Sem numeração 01/02/03. Sem set
 
 ## Imagem forte
 
-O hero tem uma **fotografia em proporção 3:2** (`img/hero.webp`), em um contêiner de cantos retos, à direita do título, sobre o fundo Noite. Enquanto a foto definitiva não chega, o arquivo é uma composição abstrata gerada com Pillow: planos de pedra clara em perspectiva sobre Noite, com uma única linha de bronze. Sem texto.
+O hero tem uma **fotografia em proporção 3:2** (`img/hero.webp`), em um contêiner de cantos retos, à direita do título, sobre o fundo Noite. A foto atual foi gerada por IA no Canva (ilustrativa, não é uma obra real), 1620 x 1080px, sem texto.
 
 Os demais elementos gráficos são CSS e SVG: o símbolo da marca (duas barras verticais e uma travessa, como um pórtico), os retratos abstratos da equipe, a linha do tempo da área do cliente e os ícones de área.
 

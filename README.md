@@ -46,7 +46,7 @@ O estudo completo está em [`docs/identidade.md`](docs/identidade.md). O ponto d
 - **Paleta:** Noite `#0E1823` (preto-azulado profundo, fundo do hero, da área do cliente e do rodapé), Calcário `#E9E5DD` e Calcário escuro `#DAD4C8` (pedra clara, fundos das seções de conteúdo), Ardósia `#1B2633` (texto), Névoa `#A7B0BA` (texto secundário sobre escuro), Bronze `#8A5A20` / `#C99A55` (um acento por tela: a linha do hero, o filtro escolhido, a data final do prazo, o botão principal da reunião) e Verde-garrafa `#2E6B4E` só para "concluído".
 - **Fontes:** Source Serif 4 (títulos, nomes, números grandes, citação) e Inter (corpo, formulários, tabelas), ambas variáveis, servidas da pasta `fonts/` com licença SIL OFL. Nenhuma fonte externa.
 - **Forma:** cantos de 2 px, divisórias de 1 px, blocos largos alternando escuro e claro como andares de um edifício; títulos à esquerda em 4 colunas e conteúdo em 8.
-- **Imagem forte:** uma fotografia em proporção 3:2 no hero (`img/hero.webp`). Enquanto a foto definitiva não chega, está uma composição abstrata gerada por programa, em pedra clara sobre Noite; o prompt para gerar a foto está em `docs/identidade.md`.
+- **Imagem forte:** uma fotografia em proporção 3:2 no hero (`img/hero.webp`), gerada por IA no Canva (ilustrativa, não é uma obra real). O prompt usado está em `docs/identidade.md`.
 - **Movimento:** só a abertura do hero (título, foto e linha de bronze) e respostas a ações. Com "reduzir movimento" ligado no aparelho, nada se mexe.
 
 ## Como funciona por dentro
