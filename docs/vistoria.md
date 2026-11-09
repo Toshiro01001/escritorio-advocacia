@@ -41,3 +41,18 @@ Nenhuma em produção. Em desenvolvimento, apenas Playwright (já instalado no a
 - A calculadora de prazos aplica a regra geral do CPC e os feriados nacionais e forenses mais comuns. Não conhece feriados estaduais e municipais nem suspensões de expediente dos tribunais; o site diz isso ao lado do resultado. Em um site real, isso deve ser conferido pelo advogado responsável.
 - A CSP por meta não protege contra embutimento em iframe (`frame-ancestors`). Mitigação: cabeçalho HTTP no servidor, quando houver.
 - O GitHub Pages serve o site sob HTTPS; o conteúdo é estático e não há segredo a proteger.
+
+## Revisão de 08/11/2026 (leva final de design)
+
+Revisão feita depois de aplicar os design systems da leva final e encaixar as fotos geradas por IA no Canva.
+
+- **CSP:** a política do `index.html` é a mesma de antes da leva (conferida linha a linha). Continua sem `unsafe-inline`, sem `unsafe-eval` e sem origem externa.
+- **Script e estilo inline:** nenhum `<script>` inline, nenhum `<style>` e nenhum atributo `style` nas páginas. Os efeitos novos mudam só classes, `textContent` e propriedades CSS pelo CSSOM, que a CSP permite.
+- **Recursos externos:** nenhum script, fonte, imagem ou folha de estilo de fora. Os únicos links externos são de navegação comum (mileumalinhas.com.br e, nesta leva, o link "Ver calendário do tribunal" para www.tjmt.jus.br, que abre a página do tribunal sem enviar nada do site).
+- **Bibliotecas:** nenhuma entrou. Movimento, vidro, contadores e revelação ao rolar são CSS e JavaScript escritos à mão, desligados com `prefers-reduced-motion`.
+- **innerHTML:** nenhum uso no JavaScript.
+- **eval e Function:** nenhum uso.
+- **Armazenamento:** só o `sessionStorage` da área do cliente de demonstração (`ap.sessao`), que já existia e some ao fechar a aba; nenhuma chave nova nesta leva.
+- **Dados pessoais:** nenhum dado pessoal real entrou. Pessoas, empresas, telefones e endereços seguem fictícios. As fotos não retratam pessoas reais.
+- **Imagens:** arquivos webp locais em `img/`, com `width`/`height`, `loading="lazy"` e `decoding="async"`. Nenhuma é carregada de outro domínio.
+- **Testes:** `tests/site.cjs` passa em 1280x900, iPhone 13 e 320px, sem erro de console e sem rolagem horizontal.
