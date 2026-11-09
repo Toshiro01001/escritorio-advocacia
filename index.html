@@ -45,14 +45,15 @@
   <section class="hero" aria-labelledby="hero-titulo">
     <div class="hero-grade">
       <div class="hero-texto">
-        <p class="hero-chapeu">Advocacia empresarial, tributária, trabalhista e de contratos. Cuiabá, desde 1998.</p>
-        <h1 id="hero-titulo">Sócios na linha de frente de cada decisão da sua empresa.</h1>
+        <p class="hero-chapeu olho olho-escuro">Advocacia empresarial, tributária, trabalhista e de contratos. Cuiabá, desde 1998.</p>
+        <h1 id="hero-titulo" data-titulo-palavras>Sócios na linha de frente de cada decisão da sua empresa.</h1>
         <span class="hero-linha" aria-hidden="true"></span>
         <p class="hero-sub">Somos uma banca de catorze advogados organizada em quatro áreas. Trabalhamos com método: quem assina a tese é quem senta à mesa com você, e cada processo tem um responsável nomeado que presta contas pelo andamento.</p>
         <div class="hero-acoes">
           <a class="botao botao-claro" href="#reuniao">Agendar uma conversa</a>
           <a class="botao botao-contorno-claro" href="#equipe">Conhecer a equipe</a>
         </div>
+        <p class="hero-status status-aba"><span class="status-ponto" aria-hidden="true"></span>Agenda aberta para primeira conversa</p>
       </div>
       <figure class="hero-figura">
         <img class="hero-foto" src="img/hero.webp" width="1620" height="1080" alt="Sala de reuniões de um escritório com parede de pedra clara, mesa de madeira escura e um notebook fechado sobre ela. Imagem gerada por IA, ilustrativa." fetchpriority="high">
@@ -60,9 +61,9 @@
     </div>
     <dl class="hero-dados">
       <div><dt>Fundação</dt><dd>1998</dd></div>
-      <div><dt>Advogados</dt><dd>14</dd></div>
+      <div><dt>Advogados</dt><dd data-contador="14">14</dd></div>
       <div><dt>Áreas</dt><dd>4</dd></div>
-      <div><dt>Atendimento</dt><dd>Cuiabá e todo o país, por vídeo</dd></div>
+      <div><dt>Atendimento</dt><dd class="hero-dado-texto">Cuiabá e todo o país, por vídeo</dd></div>
     </dl>
   </section>
 
@@ -70,6 +71,7 @@
   <section class="secao secao-clara" id="areas" aria-labelledby="areas-titulo">
     <div class="secao-grade">
       <header class="secao-cabeca">
+        <p class="olho">Áreas</p>
         <h2 id="areas-titulo">Quatro áreas, uma só mesa.</h2>
         <p>Cada área tem sócios responsáveis e equipe própria, mas as questões da sua empresa raramente cabem em uma área só. Por isso os casos são discutidos em conjunto antes de qualquer peça ser assinada.</p>
       </header>
@@ -118,9 +120,13 @@
   <section class="secao secao-clara-2" id="equipe" aria-labelledby="equipe-titulo">
     <div class="secao-grade">
       <header class="secao-cabeca">
+        <p class="olho">Equipe</p>
         <h2 id="equipe-titulo">Quem assina, atende.</h2>
         <p>Catorze advogados e advogadas, sócios e associados. Filtre por área ou procure por nome. Os números de OAB são fictícios.</p>
       </header>
+      <figure class="equipe-foto">
+        <img src="img/equipe-reuniao.webp" width="1456" height="816" alt="Mesa de reunião de madeira escura com quatro pessoas de terno vistas de costas e de lado, pastas cinza e uma parede de pedra clara ao fundo. Imagem gerada por IA, ilustrativa." loading="lazy" decoding="async">
+      </figure>
       <div class="equipe-corpo">
         <form class="equipe-filtros" aria-label="Filtrar a equipe" data-equipe-filtros>
           <fieldset class="filtro-areas">
@@ -178,6 +184,7 @@
         <div class="painel" hidden data-painel>
           <div class="painel-cabeca">
             <div>
+              <p class="painel-status status-aba"><span class="status-ponto" aria-hidden="true"></span>Sessão de demonstração ativa</p>
               <p class="painel-rotulo">Cliente</p>
               <h3 data-painel-cliente>Horizonte Agroindustrial Ltda.</h3>
               <p class="painel-sub">Sócia responsável pela conta: <span data-painel-socia></span></p>
@@ -200,6 +207,7 @@
   <section class="secao secao-clara" id="prazos" aria-labelledby="prazos-titulo">
     <div class="secao-grade">
       <header class="secao-cabeca">
+        <p class="olho">Prazos</p>
         <h2 id="prazos-titulo">Calculadora de prazos processuais</h2>
         <p>Conta prazos em dias úteis conforme o Código de Processo Civil (arts. 219, 220 e 224), com fins de semana, feriados nacionais calculados e, se quiser, feriados forenses e recesso. Serve para conferência; a contagem oficial é a do tribunal.</p>
       </header>
@@ -252,7 +260,11 @@
             <summary>Ver a contagem dia a dia</summary>
             <ol data-prazos-tabela></ol>
           </details>
-          <p class="nota">Feriados estaduais, municipais e suspensões de expediente do tribunal não estão incluídos. Confira sempre o calendário oficial.</p>
+          <div class="nota dica">
+            <svg class="dica-icone" viewBox="0 0 16 16" aria-hidden="true" focusable="false"><circle cx="8" cy="8" r="7" fill="none" stroke="currentColor" stroke-width="1.2"/><rect x="7.3" y="7" width="1.4" height="5" fill="currentColor"/><rect x="7.3" y="4" width="1.4" height="1.6" fill="currentColor"/></svg>
+            <p class="dica-texto">Feriados estaduais, municipais e suspensões de expediente do tribunal não estão incluídos. Confira sempre o calendário oficial.</p>
+            <a class="dica-acao" href="https://www.tjmt.jus.br" rel="noopener">Ver calendário do tribunal</a>
+          </div>
         </div>
       </div>
     </div>
@@ -262,6 +274,7 @@
   <section class="secao secao-clara-2" id="reuniao" aria-labelledby="reuniao-titulo">
     <div class="secao-grade">
       <header class="secao-cabeca">
+        <p class="olho">Reunião</p>
         <h2 id="reuniao-titulo">Agendar uma conversa</h2>
         <p>Uma primeira reunião serve para entender a situação e dizer com franqueza se e como podemos ajudar. Nesta demonstração, o pedido é conferido e resumido na tela, sem ser enviado.</p>
       </header>
@@ -338,8 +351,12 @@
   <section class="secao secao-clara" id="publicacoes" aria-labelledby="publicacoes-titulo">
     <div class="secao-grade">
       <header class="secao-cabeca">
+        <p class="olho">Publicações</p>
         <h2 id="publicacoes-titulo">Publicações</h2>
         <p>Artigos curtos escritos pela equipe sobre mudanças de lei e decisões relevantes. Conteúdo informativo, não é consulta. Procure por tema ou filtre por área.</p>
+        <figure class="pub-foto">
+          <img src="img/biblioteca-publicacoes.webp" width="1152" height="1440" alt="Detalhe de estante de madeira escura com códigos e revistas jurídicas de lombadas cinza e azul-escuro, uma caneta de bronze apoiada sobre um caderno fechado. Imagem gerada por IA, ilustrativa." loading="lazy" decoding="async">
+        </figure>
       </header>
       <div class="pub-corpo">
         <form class="pub-filtros" aria-label="Filtrar publicações" data-pub-filtros>
@@ -379,8 +396,15 @@
           <p>Telefone: (65) 0000-0000<br>E-mail: contato@albuquerqueprado.exemplo</p>
           <p>Segunda a sexta, das 8h às 18h.</p>
         </address>
-        <div class="contato-aviso">
-          <p>Este site tem caráter informativo, nos termos do Código de Ética e Disciplina da OAB e do Provimento 205/2021. Não divulgamos valores de honorários nem resultados de casos. Consulte um advogado sobre a sua situação concreta.</p>
+        <div class="contato-lado">
+          <figure class="contato-foto">
+            <img src="img/recepcao-edificio.webp" width="1456" height="1088" alt="Recepção de escritório no 12º andar: balcão de pedra clara, parede de calcário, cadeiras de couro cinza e janela com a cidade ao fundo no fim da tarde. Imagem gerada por IA, ilustrativa." loading="lazy" decoding="async">
+          </figure>
+          <div class="contato-aviso dica dica-escura">
+            <svg class="dica-icone" viewBox="0 0 16 16" aria-hidden="true" focusable="false"><circle cx="8" cy="8" r="7" fill="none" stroke="currentColor" stroke-width="1.2"/><rect x="7.3" y="7" width="1.4" height="5" fill="currentColor"/><rect x="7.3" y="4" width="1.4" height="1.6" fill="currentColor"/></svg>
+            <p class="dica-texto">Este site tem caráter informativo, nos termos do Código de Ética e Disciplina da OAB e do Provimento 205/2021. Não divulgamos valores de honorários nem resultados de casos. Consulte um advogado sobre a sua situação concreta.</p>
+            <a class="dica-acao" href="#como-funciona">Como este site funciona</a>
+          </div>
         </div>
       </div>
     </div>
@@ -419,25 +443,36 @@
 </main>
 
 <footer class="rodape">
-  <div class="rodape-grade">
-    <div class="rodape-marca">
-      <svg class="marca-simbolo" viewBox="0 0 32 32" aria-hidden="true" focusable="false">
-        <rect x="4" y="4" width="24" height="3"/>
-        <rect x="7" y="9" width="4" height="19"/>
-        <rect x="21" y="9" width="4" height="19"/>
-      </svg>
-      <p>Albuquerque Prado Advogados<br><span>Banca fictícia. Demonstração.</span></p>
+  <div class="rodape-veu">
+    <div class="rodape-grade">
+      <div class="rodape-marca">
+        <svg class="marca-simbolo" viewBox="0 0 32 32" aria-hidden="true" focusable="false">
+          <rect x="4" y="4" width="24" height="3"/>
+          <rect x="7" y="9" width="4" height="19"/>
+          <rect x="21" y="9" width="4" height="19"/>
+        </svg>
+        <div>
+          <p>Albuquerque Prado Advogados<br><span>Banca fictícia. Demonstração.</span></p>
+          <p class="rodape-endereco">Edifício Pedra Clara, Av. Historiador Rubens de Mendonça, 0000, 12º andar<br>Cuiabá, MT. Segunda a sexta, das 8h às 18h.</p>
+        </div>
+      </div>
+      <nav class="rodape-coluna" aria-label="Mapa do site">
+        <p class="rodape-titulo">Mapa do site</p>
+        <a href="#areas">Áreas de atuação</a>
+        <a href="#equipe">Equipe</a>
+        <a href="#cliente">Área do cliente</a>
+        <a href="#prazos">Calculadora de prazos</a>
+        <a href="#reuniao">Agendar uma conversa</a>
+        <a href="#publicacoes">Publicações</a>
+        <a href="#como-funciona">Como este site funciona</a>
+      </nav>
+      <div class="rodape-coluna">
+        <p class="rodape-titulo">Aviso ético e demonstração</p>
+        <p class="rodape-texto">Conteúdo informativo, nos termos do Código de Ética e Disciplina da OAB e do Provimento 205/2021. Sem valores de honorários, sem promessa de resultado.</p>
+        <p class="rodape-texto">Sociedade de advogados fictícia criada pela <a href="https://mileumalinhas.com.br" rel="noopener">Mil e Uma Linhas!</a> para demonstração. Nenhum dado desta página é real.</p>
+      </div>
+      <p class="rodape-nota">Albuquerque Prado Advogados, banca fictícia. Nenhum dado desta página é real.</p>
     </div>
-    <nav class="rodape-links" aria-label="Mapa do site">
-      <a href="#areas">Áreas de atuação</a>
-      <a href="#equipe">Equipe</a>
-      <a href="#cliente">Área do cliente</a>
-      <a href="#prazos">Calculadora de prazos</a>
-      <a href="#reuniao">Agendar uma conversa</a>
-      <a href="#publicacoes">Publicações</a>
-      <a href="#como-funciona">Como este site funciona</a>
-    </nav>
-    <p class="rodape-nota">Sociedade de advogados fictícia. Nenhum dado desta página é real.</p>
   </div>
 </footer>
 

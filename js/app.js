@@ -18,28 +18,83 @@
   }
   const normalizar = (s) => String(s).toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g, "");
 
+  const semMovimento = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
   /* ---------- Menu do celular ---------- */
   const menuBotao = $("[data-menu]");
   const menu = $("#menu");
   if (menuBotao && menu) {
+    const fechar = () => { menu.classList.remove("aberto"); menuBotao.setAttribute("aria-expanded", "false"); };
     menuBotao.addEventListener("click", () => {
       const aberto = menu.classList.toggle("aberto");
       menuBotao.setAttribute("aria-expanded", String(aberto));
     });
-    menu.addEventListener("click", (e) => {
-      if (e.target.closest("a")) { menu.classList.remove("aberto"); menuBotao.setAttribute("aria-expanded", "false"); }
+    menu.addEventListener("click", (e) => { if (e.target.closest("a")) fechar(); });
+    document.addEventListener("click", (e) => {
+      if (menu.classList.contains("aberto") && !e.target.closest(".topo")) fechar();
     });
     document.addEventListener("keydown", (e) => {
-      if (e.key === "Escape" && menu.classList.contains("aberto")) { menu.classList.remove("aberto"); menuBotao.setAttribute("aria-expanded", "false"); menuBotao.focus(); }
+      if (e.key === "Escape" && menu.classList.contains("aberto")) { fechar(); menuBotao.focus(); }
     });
+  }
+
+  /* ---------- Cabeçalho em vidro: escurece o texto sobre as seções claras ---------- */
+  const topo = $(".topo");
+  if (topo) {
+    const claras = $$(".secao-clara, .secao-clara-2");
+    let agendado = false;
+    function ajustarTopo() {
+      agendado = false;
+      document.documentElement.style.setProperty("--topo-altura", topo.offsetHeight + "px");
+      const base = topo.getBoundingClientRect().bottom - 1;
+      let sobreClaro = false;
+      for (const sec of claras) {
+        const r = sec.getBoundingClientRect();
+        if (r.top <= base && r.bottom > base) { sobreClaro = true; break; }
+      }
+      topo.classList.toggle("sobre-claro", sobreClaro);
+    }
+    window.addEventListener("scroll", () => { if (!agendado) { agendado = true; requestAnimationFrame(ajustarTopo); } }, { passive: true });
+    window.addEventListener("resize", ajustarTopo);
+    ajustarTopo();
+  }
+
+  /* ---------- Hero: título palavra a palavra e contador ---------- */
+  const titulo = $("[data-titulo-palavras]");
+  if (titulo) {
+    const palavras = titulo.textContent.trim().split(/\s+/);
+    titulo.replaceChildren(...palavras.flatMap((p, i) => {
+      const span = el("span", { class: "palavra", text: p });
+      span.style.setProperty("--i", String(i));
+      return i < palavras.length - 1 ? [span, " "] : [span];
+    }));
+    titulo.classList.add("dividido");
+  }
+  const contador = $("[data-contador]");
+  if (contador && !semMovimento && "IntersectionObserver" in window) {
+    const alvo = parseInt(contador.dataset.contador, 10);
+    const obs = new IntersectionObserver((entradas) => {
+      if (!entradas.some((e) => e.isIntersecting)) return;
+      obs.disconnect();
+      const inicio = performance.now();
+      const passo = (agora) => {
+        const t = Math.min(1, (agora - inicio) / 900);
+        const suave = 1 - Math.pow(1 - t, 3);
+        contador.textContent = String(Math.round(alvo * suave));
+        if (t < 1) requestAnimationFrame(passo);
+      };
+      contador.textContent = "0";
+      requestAnimationFrame(passo);
+    }, { threshold: 0.6 });
+    obs.observe(contador);
   }
 
   /* ---------- Equipe ---------- */
   const AREAS = { empresarial: "Empresarial e societário", tributario: "Tributário", trabalhista: "Trabalhista", contratos: "Contratos" };
   const EQUIPE = [
-    { nome: "Helena Albuquerque", cargo: "Sócia fundadora", oab: "OAB/MT 00.101", areas: ["empresarial", "contratos"], bio: "Coordena a área empresarial. Atua em reorganizações societárias e acordos de sócios de empresas familiares do agronegócio.", temas: "acordos de sócios, governança, sucessão em empresas familiares" },
-    { nome: "Rogério Prado", cargo: "Sócio fundador", oab: "OAB/MT 00.102", areas: ["tributario"], bio: "Coordena a área tributária. Trinta anos de contencioso administrativo federal e estadual.", temas: "autuações, CARF, ICMS, transação tributária" },
-    { nome: "Marina Castelo Branco", cargo: "Sócia", oab: "OAB/MT 00.103", areas: ["trabalhista"], bio: "Coordena a área trabalhista. Negocia acordos coletivos e conduz auditorias de passivo em empresas com mais de mil empregados.", temas: "negociação coletiva, auditoria de passivo, saúde e segurança" },
+    { nome: "Helena Albuquerque", cargo: "Sócia fundadora", oab: "OAB/MT 00.101", areas: ["empresarial", "contratos"], foto: "img/socia-helena.webp", fotoAlt: "Retrato corporativo de uma advogada madura de perfil, diante de parede de pedra clara, em luz lateral suave. Imagem gerada por IA, ilustrativa.", bio: "Coordena a área empresarial. Atua em reorganizações societárias e acordos de sócios de empresas familiares do agronegócio.", temas: "acordos de sócios, governança, sucessão em empresas familiares" },
+    { nome: "Rogério Prado", cargo: "Sócio fundador", oab: "OAB/MT 00.102", areas: ["tributario"], foto: "img/socio-rogerio.webp", fotoAlt: "Retrato corporativo de um advogado maduro de terno cinza, visto de três quartos e olhando para fora do quadro, em escritório com parede de pedra. Imagem gerada por IA, ilustrativa.", bio: "Coordena a área tributária. Trinta anos de contencioso administrativo federal e estadual.", temas: "autuações, CARF, ICMS, transação tributária" },
+    { nome: "Marina Castelo Branco", cargo: "Sócia", oab: "OAB/MT 00.103", areas: ["trabalhista"], foto: "img/socia-marina.webp", fotoAlt: "Retrato corporativo de uma advogada de cerca de 40 anos, blazer cinza-claro, de perfil junto a uma janela alta de edifício. Imagem gerada por IA, ilustrativa.", bio: "Coordena a área trabalhista. Negocia acordos coletivos e conduz auditorias de passivo em empresas com mais de mil empregados.", temas: "negociação coletiva, auditoria de passivo, saúde e segurança" },
     { nome: "Tiago Nogueira", cargo: "Sócio", oab: "OAB/MT 00.104", areas: ["contratos", "empresarial"], bio: "Responsável pela área de contratos. Redige e negocia contratos de fornecimento, distribuição e tecnologia.", temas: "contratos de distribuição, tecnologia, garantias" },
     { nome: "Beatriz Sampaio", cargo: "Sócia", oab: "OAB/MT 00.105", areas: ["tributario"], bio: "Consultoria preventiva e revisão de regimes de apuração. Acompanha a implantação da reforma do consumo.", temas: "reforma tributária, planejamento, regimes especiais" },
     { nome: "Caio Figueiredo", cargo: "Sócio", oab: "OAB/MT 00.106", areas: ["empresarial"], bio: "Recuperação judicial e extrajudicial, reestruturação de dívidas e negociação com credores.", temas: "recuperação judicial, reestruturação, credores" },
@@ -59,7 +114,9 @@
     const iniciais = (nome) => { const p = nome.split(" "); return (p[0][0] + p[p.length - 1][0]).toUpperCase(); };
     for (const pessoa of EQUIPE) {
       const li = el("li", { class: "pessoa", "data-areas": pessoa.areas.join(" "), "data-texto": normalizar([pessoa.nome, pessoa.cargo, pessoa.temas, pessoa.areas.map((a) => AREAS[a]).join(" ")].join(" ")) }, [
-        el("span", { class: "retrato", "aria-hidden": "true", text: iniciais(pessoa.nome) }),
+        pessoa.foto
+          ? el("img", { class: "retrato retrato-foto", src: pessoa.foto, width: "1088", height: "1456", alt: pessoa.fotoAlt, loading: "lazy", decoding: "async" })
+          : el("span", { class: "retrato", "aria-hidden": "true", text: iniciais(pessoa.nome) }),
         el("div", null, [
           el("h3", { text: pessoa.nome }),
           el("p", { class: "cargo", text: `${pessoa.cargo}. ${pessoa.areas.map((a) => AREAS[a]).join(" e ")}. ${pessoa.oab}` }),
@@ -294,10 +351,12 @@
           el("p", { class: "proximo-passo", text: "Próximo passo: " + p.proximo })
         ]);
         const botao = el("button", { class: "processo-botao", type: "button", "aria-expanded": "false", "aria-controls": idDet }, [
-          el("p", { class: "processo-numero", text: `Processo ${p.numero}. ${p.vara}` }),
-          el("p", { class: "processo-titulo", text: p.titulo }),
-          el("span", { class: "processo-fase" + (p.concluido ? " concluido" : ""), text: p.fase }),
-          el("p", { class: "processo-meta", text: `${p.area}. Responsável: ${p.responsavel}. Último movimento em ${fmtData.format(deISO(p.movimentos[0].data))}.` })
+          el("p", { class: "processo-numero", text: p.numero }),
+          el("div", { class: "processo-texto" }, [
+            el("p", { class: "processo-titulo", text: p.titulo }),
+            el("p", { class: "processo-meta", text: `${p.vara}. ${p.area}. Responsável: ${p.responsavel}. Último movimento em ${fmtData.format(deISO(p.movimentos[0].data))}.` })
+          ]),
+          el("span", { class: "chip" + (p.concluido ? " chip-concluido" : " chip-pendente"), text: p.fase })
         ]);
         botao.addEventListener("click", () => {
           const abrir = detalhe.hidden;
@@ -308,8 +367,11 @@
       }));
       $("[data-compromissos]").replaceChildren(...CLIENTE.compromissos.map((c) => el("li", { class: "compromisso" }, [
         el("time", { datetime: c.data, text: `${fmtData.format(deISO(c.data))}, ${c.hora}` }),
-        el("p", { text: c.texto }),
-        el("p", { class: "quem", text: c.quem })
+        el("div", { class: "compromisso-texto" }, [
+          el("p", { text: c.texto }),
+          el("p", { class: "quem", text: c.quem })
+        ]),
+        el("span", { class: "chip chip-concluido", text: "Em dia" })
       ])));
     }
     function entrar() { montarPainel(); loginForm.hidden = true; painel.hidden = false; }

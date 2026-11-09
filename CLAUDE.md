@@ -1,6 +1,6 @@
 # Albuquerque Prado Advogados
 
-Site de demonstração de uma banca de advocacia empresarial fictícia, em HTML, CSS e JavaScript puros, publicado no GitHub Pages em `/escritorio-advocacia/`. A página está em `index.html`, os estilos em `css/estilo.css`, as funções e os dados fictícios em `js/app.js`, as fontes locais em `fonts/`, a imagem do hero em `img/`, o estudo de identidade e a vistoria em `docs/` e os testes em `tests/site.cjs`. Veja o `README.md`.
+Site de demonstração de uma banca de advocacia empresarial fictícia, em HTML, CSS e JavaScript puros, publicado no GitHub Pages em `/escritorio-advocacia/`. A página está em `index.html`, os estilos em `css/estilo.css`, as funções e os dados fictícios em `js/app.js`, as fontes locais em `fonts/`, as imagens em `img/`, o estudo de identidade e a vistoria em `docs/` e os testes em `tests/site.cjs`. Veja o `README.md`.
 
 ## Regras de trabalho
 
